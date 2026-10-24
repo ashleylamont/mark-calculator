@@ -2,7 +2,9 @@
 
 Estimate and visualise your overall course mark from weighted assessments. Built with Vue 3, TypeScript, Vuetify 3 and Tailwind CSS, with Vite for development and production builds.
 
-![Mark Calculator screenshot](public/screenshot.png)
+![Demo of entering known assessment marks and projecting final exam results](.github/assets/demo.gif)
+
+[View a static screenshot](public/screenshot.png).
 
 ## Using the calculator
 
