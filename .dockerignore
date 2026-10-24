@@ -1,0 +1,12 @@
+node_modules
+dist
+.git
+.github
+.vscode
+.env*
+*.local
+*.log
+*.tsbuildinfo
+README.md
+k8s
+compose.yaml

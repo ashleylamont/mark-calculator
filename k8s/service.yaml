@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mark-calculator
+  labels:
+    app: mark-calculator
+spec:
+  selector:
+    app: mark-calculator
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
