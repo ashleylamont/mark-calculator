@@ -58,8 +58,11 @@ jobs:
             --cap-drop ALL --security-opt no-new-privileges:true \
             -p 127.0.0.1:8080:8080 mark-calculator:test
           trap 'docker logs mark-calculator; docker rm -f mark-calculator' EXIT
+          # Docker can briefly reset connections while the container starts.
           curl --fail --silent --show-error --retry 20 --retry-delay 1 \
-            --retry-connrefused http://127.0.0.1:8080/healthz | grep -qx ok
+            --retry-all-errors --retry-max-time 30 --max-time 3 \
+            --output /tmp/healthz http://127.0.0.1:8080/healthz
+          grep -qx ok /tmp/healthz
           curl --fail --silent --show-error http://127.0.0.1:8080/ > /tmp/index.html
           grep -q '<title>Marks Calculator</title>' /tmp/index.html
           asset=$(sed -n 's/.*src="\(\/assets\/[^" ]*\.js\)".*/\1/p' /tmp/index.html)
